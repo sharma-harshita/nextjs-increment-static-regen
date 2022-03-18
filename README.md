@@ -1,34 +1,22 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Static Site Generation :
+    1. It is a method of pre-rendering where the HTML pages are generated at the time of build.
+    2. These pre-rendered static pages can be pushed to CDN, cached and served  to client across the globe instantly.
+    3. Static content is fast and better for SEO as they are immediately indexed by Search Engines.
+    4. Static generation with getStaticProps for data fetching and getStaticPaths for dynamic pages  seems like a good approach to a wide variety of applications.
 
-## Getting Started
 
-First, run the development server:
+## ISSUES with SSG : 
+    1. The build time is proportional to the number of pages in application.
+    2. A page once generated , can contain stale (old) data till the time we rebuild the application.
 
-```bash
-npm run dev
-# or
-yarn dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**Problem** is that even when you will modify the data in products.json file even after that it will not reflect in browser because once it is loaded or the pages are build or pre-rendered after that you can not render or referesh the page again. When you are running in dev env each refresh is new request , so in local you will see the result. So to see this problem first create the build and then run the application.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## ISR : Incremental Static Re-Generation
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+There is a need to update those pages which needed a change without having to rebuild the entire application.
 
-## Learn More
+With ISR, Next.JS allows you to update static pages after you have built the application . This solves the problem of stale data 
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+In getStaticProps function , when we are returning the props ,we can return one more parameter named as `revalidate` , It will have a numeric value, this value will be in seconds, that after how many seconds you want to rebuild the application.

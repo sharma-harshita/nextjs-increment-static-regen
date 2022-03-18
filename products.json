@@ -1,0 +1,19 @@
+{
+    "products":[
+        {
+            "id":1,
+            "title":"MackBook Pro",
+            "price":250000
+        },
+        {
+            "id":2,
+            "title":"MackBook Air",
+            "price":2000
+        },
+        {
+            "id":3,
+            "title":"IPhone",
+            "price":5000
+        }
+    ]
+}
