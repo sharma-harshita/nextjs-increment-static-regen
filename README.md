@@ -19,4 +19,6 @@ There is a need to update those pages which needed a change without having to re
 
 With ISR, Next.JS allows you to update static pages after you have built the application . This solves the problem of stale data 
 
-In getStaticProps function , when we are returning the props ,we can return one more parameter named as `revalidate` , It will have a numeric value, this value will be in seconds, that after how many seconds you want to rebuild the application.
+In getStaticProps function , when we are returning the props ,we can return one more parameter named as `revalidate` , It will have a numeric value, this value will be in seconds, that after how many seconds you want to rebuild the application or rerun the getStaticProps function.
+
+Re-generation : denotes the time after which , if a user makes a request , a re-generation has to be initiated.
